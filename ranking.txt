@@ -1,0 +1,6 @@
+oi,213
+samuel,118
+ola,50
+samuel,34
+samuel,1
+teste,1

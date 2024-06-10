@@ -12,10 +12,16 @@ public class Jogador implements Comparable<Jogador> {
     public String getNome() {
         return nome;
     }
+    
+    
+    public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public int getPontuacao() {
+	public int getPontuacao() {
         return pontuacao;
-    }
+    } //Nao coloquei o metodo setPontuacao para nao ocorrer fraude
+	
 
     @Override
     public int compareTo(Jogador novo) { //Compara os jogadores com base na pontucao
@@ -27,7 +33,7 @@ public class Jogador implements Comparable<Jogador> {
         return nome + "," + pontuacao;
     }
 
-    public static Jogador quebraString(String linha) {
+    public static Jogador quebraString(String linha) { //Cria um objeto Jogador a partir de uma string
         String[] partes = linha.split(","); //divide a string em linhas
         return new Jogador(partes[0], Integer.parseInt(partes[1])); //parte [0] nome do jogador
         //parte [1] pontuacao e faz a conversao da String para inteiro

@@ -17,25 +17,25 @@ public class Pizza extends Elemento {
 		
 	}
 	
-	public void moverParaCima() {
-        if (getPy() - getVel() >= 0) {
-            incPy(-getVel());
+	public void moverParaCima() { 
+        if (getPy() - getVel() >= 0) { //Verifica o limite superior para nao ultrapssar
+            incPy(-getVel()); // Se o if for verdadeiro, a posicao Y vai sendo diminuida pelo valor da velocidade da pizza que é 5
         }
     }
 
-    public void moverParaBaixo(int altura) {
+    public void moverParaBaixo(int altura) { //Mesma logica
         if (getPy() + getAltura() + getVel() <= altura) {
             incPy(getVel());
         }
     }
 
-    public void moverParaEsquerda() {
+    public void moverParaEsquerda() { //Mesma logica
         if (getPx() - getVel() >= 0) {
             incPx(-getVel());
         }
     }
 
-    public void moverParaDireita(int largura) {
+    public void moverParaDireita(int largura) { //Mesma logica
         if (getPx() + getLargura() + getVel() <= largura) {
             incPx(getVel());
         }

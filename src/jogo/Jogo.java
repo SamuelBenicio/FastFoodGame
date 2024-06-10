@@ -37,6 +37,10 @@ public class Jogo extends JFrame {
 
 	private CenarioPadrao cenario;
 
+	public static int nivel;
+	
+	public static boolean pausado;
+	
 	public enum Tecla {
 		CIMA, BAIXO, ESQUERDA, DIREITA, BA, BB, BC
 	}
@@ -48,7 +52,8 @@ public class Jogo extends JFrame {
 			controleTecla[i] = false;
 		}
 	}
-
+	
+	//Define se a tecla esta pressionado ou nao
 	private void setaTecla(int tecla, boolean pressionada) {
 		switch (tecla) {
 		case KeyEvent.VK_UP:
@@ -77,13 +82,10 @@ public class Jogo extends JFrame {
 		}
 	}
 
-	public static int nivel;
-
-	public static boolean pausado;
-
+	//Construtor que nicializa o jogo
 	public Jogo() {
-		ranking = new Ranking();
-		this.addKeyListener(new KeyListener() {
+		ranking = new Ranking(); //Inicializa o ranking
+		this.addKeyListener(new KeyListener() { //Teclado
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -104,7 +106,7 @@ public class Jogo extends JFrame {
 
 		g2d = buffer.createGraphics();
 
-		tela = new JPanel() {
+		tela = new JPanel() { //Configura o painel de exibicao
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -138,7 +140,7 @@ public class Jogo extends JFrame {
 		cenario.carregar();
 	}
 
-	public void iniciarJogo() {
+	public void iniciarJogo() { //Inicia o loop principal do jogo
 		long prxAtualizacao = 0; //tempo 0 para o proximo frame
 
 		while (true) {
@@ -160,7 +162,7 @@ public class Jogo extends JFrame {
 
 						cenario.carregar();
 
-					} else {
+					} else { //Estado do jogo
 						Jogo.pausado = !Jogo.pausado;
 					}
 
@@ -202,7 +204,7 @@ public class Jogo extends JFrame {
 		}
 	}
 	
-	 public static void finalizarJogo(int pontuacao) {
+	 public static void finalizarJogo(int pontuacao) { //Finaliza o jogo e registra a pontuacao no ranking
 	        String nome = JOptionPane.showInputDialog(null, "Digite seu nome: ");
 	        if (nome != null && !nome.trim().isEmpty()) { //remove espacos em branco do inicio e fim do texto
 	            Jogador jogador = new Jogador(nome, pontuacao); //Instancia jogador com nome e pontuacao
@@ -212,7 +214,7 @@ public class Jogo extends JFrame {
 	    }
 	 
 	 
-	 private static void exibirRanking() {
+	 private static void exibirRanking() { //Exibe o ranking
 	        StringBuilder rankingStr = new StringBuilder("Ranking:\n");
 	        List<Jogador> jogadores = ranking.getJogadores();
 	        for (int i = 0; i < jogadores.size(); i++) {
@@ -224,7 +226,7 @@ public class Jogo extends JFrame {
 	
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { //Método principal que inicia o jogo
 		//String nome = JOptionPane.showInputDialog(null, "Digite seu nome: ");
 		Jogo jogo = new Jogo();
 		jogo.carregarJogo();

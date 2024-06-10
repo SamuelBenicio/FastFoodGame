@@ -15,10 +15,7 @@ public class JogoCenario extends CenarioPadrao {
 		JOGANDO, GANHOU, PERDEU
 	}
 
-	/*public enum Direcao {
-		NORTE, SUL, OESTE, LESTE;
-	}
-	*/
+	
 	
 	private Pizza pizza;
 	
@@ -38,8 +35,6 @@ public class JogoCenario extends CenarioPadrao {
 	
     private static final int NUM_PEPPERONIS = 5;
 
-	
-    //private final int numLegumes = 4;
     private int vidas = 6;
 	
 	private int pontuacao =0;
@@ -49,7 +44,7 @@ public class JogoCenario extends CenarioPadrao {
 	}
 
 	@Override
-	public void carregar() {
+	public void carregar() { //Carrega os elementos do cenario 
 		
 
 		texto.setCor(Color.WHITE);
@@ -57,8 +52,7 @@ public class JogoCenario extends CenarioPadrao {
 		pizza = new Pizza();
 		pizza.setVel(6);
         pizza.setAtivo(true);
-        //pizza.setPx(largura / 2);
-        //pizza.setPy(altura - 50);
+        
         Util.centraliza(pizza, largura, altura);
         
         legumes = new Legume[NUM_LEGUMES];
@@ -77,8 +71,8 @@ public class JogoCenario extends CenarioPadrao {
 
 	
 	@Override
-	public void descarregar() {
-		pizza.setAtivo(false);
+	public void descarregar() { //Descarrega os elementos do cenario e finaliza o jogo
+		pizza.setAtivo(false); //Torna o ativo dos elementos como false
 		for (Legume legume : legumes) {
             legume.setAtivo(false);
         }
@@ -91,7 +85,7 @@ public class JogoCenario extends CenarioPadrao {
 
 
 	@Override
-    public void atualizar() {
+    public void atualizar() { //Atualiza o estado do jogo a cada ciclo
 		if (estado == Estado.JOGANDO) {
             if (Jogo.controleTecla[Jogo.Tecla.CIMA.ordinal()]) {
                 pizza.moverParaCima();
@@ -110,7 +104,7 @@ public class JogoCenario extends CenarioPadrao {
             for (Legume legume : legumes) {
                 if (legume.isAtivo()) {
                     legume.mover(largura);
-                    if (Util.colide(pizza, legume)) {
+                    if (Util.colide(pizza, legume )) {
                         vidas--;
                         legume.setAtivo(false); // Legume desaparece
                         if (vidas <= 0) {
@@ -128,7 +122,7 @@ public class JogoCenario extends CenarioPadrao {
                 if (peperoni.isAtivo()) {
                     peperoni.mover(largura);
                     if (Util.colide(pizza, peperoni)) {
-                        pontuacao++;
+                        pontuacao++; 
                         peperoni.setAtivo(false); // Pepperoni desaparece
                     }
                 } else {

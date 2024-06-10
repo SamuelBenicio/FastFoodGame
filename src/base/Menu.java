@@ -79,33 +79,4 @@ public class Menu extends Texto {
 
 	}
 	
-	////////////////////////////////////////////////////////
-	
-	public void ativarEntradaTexto(boolean ativar) {
-		this.entradaAtiva = ativar;
-		if (ativar) {
-			this.entradaTexto = new StringBuilder();
-		}
-	}
-
-	public boolean isEntradaAtiva() {
-		return entradaAtiva;
-	}
-
-	public void adicionarChar(char c) {
-		if (entradaAtiva) {
-			entradaTexto.append(c);
-		}
-	}
-
-	public void removerUltimoChar() {
-		if (entradaAtiva && entradaTexto.length() > 0) {
-			entradaTexto.deleteCharAt(entradaTexto.length() - 1);
-		}
-	}
-
-	public String getEntradaTexto() {
-		return entradaTexto.toString();
-	}
 }
-
